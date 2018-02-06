@@ -8,7 +8,6 @@ Created on Thu Feb  1 14:14:10 2018
 import os
 
 #CHANGE PATH HERE
-#path="../../../../../../repos/projectbrandon/Brandon"
 path=".."
 
 def compareFiles(f1, f2):
@@ -43,6 +42,7 @@ def compareFiles(f1, f2):
     
     
 def main():
+    #grab all .txt, .csv, & .py files from the specified file path
     files=[f for f in os.listdir(path) if os.path.isfile(path+"/"+f)]
     files=[f for f in files if f.endswith(".py") or f.endswith(".csv") or f.endswith(".txt")]
     
