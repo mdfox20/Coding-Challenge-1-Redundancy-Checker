@@ -1,16 +1,14 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Feb  1 14:14:10 2018
 
-@author: Logan
-"""
+# File: lineComparison.py
+# Challenge 1, Redundancy Checker
+# Authors: Logan Swanson, Maddy Fox, Maddy Kulke
+
 import os
 
 #CHANGE PATH HERE
 path=".."
 
-def compareFiles(f1, f2):
+def compare_files(f1, f2):
     '''takes two filenames, and prints a report of the identical lines'''
     file1=open(f1,'r')
     file2=open(f2,'r')
@@ -32,22 +30,36 @@ def compareFiles(f1, f2):
             #so this ensures that same line from file2 wont be paired again
             lines2[lines2.index(line)]=""
             numIdentical+=1
+            
     if not results=="":
         print("---------------------------------")
-        print("File1: "+f1)
-        print("File2: "+f2)
+        print("File1: "+os.path.basename(f1))
+        print("File2: "+os.path.basename(f2))
         print("Number of Identical Lines: ", numIdentical)
         print("---------------------------------")
         print(results)
-    
+
+    file1.close()
+    file2.close()
+
+    return numIdentical
     
 def main():
     #grab all .txt, .csv, & .py files from the specified file path
     files=[f for f in os.listdir(path) if os.path.isfile(path+"/"+f)]
     files=[f for f in files if f.endswith(".py") or f.endswith(".csv") or f.endswith(".txt")]
-    
-    for file1 in files:
-        for file2 in files[files.index(file1)+1:]:
-            compareFiles(path+"/"+file1, path+"/"+file2)
+
+    if files:
+      matches=0
+      
+      for file1 in files:
+          for file2 in files[files.index(file1)+1:]:
+              matches += compare_files(path+"/"+file1, path+"/"+file2)
+              
+      if matches==0:
+          print("No matches found in files")
+      
+    else:
+        print("No files found in directory")
     
 main()
