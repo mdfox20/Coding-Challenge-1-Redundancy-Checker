@@ -1,12 +1,1 @@
-# Coding-Challenge-1-Redundancy-Checker
-
-#TODO
--CODE:
-	*review commenting
-	*review naming conventions
-	*review efficiency
-
--README:
-	*explain how to run/change file path
-	*analyze efficiency
-
+This program reads in the .py, .csv and .txt files in a specified directory and prints out a report with the number of identical lines found between each file pair and a list of the lines themselves. The path is stored in a global variable at the top of the file, so the user must specify an existing path here before running. If there are no files in the directory, the program will print an error message alerting the user to this.
